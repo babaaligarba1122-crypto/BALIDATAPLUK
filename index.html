@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BALIDATAPLLUK - Data App</title>
+  <title>BALIDATAPLUK - Data App</title>
 
   <style>
     * {
@@ -26,39 +26,41 @@
     }
 
     header h1 {
-      font-size: 28px;
+      margin-bottom: 8px;
     }
 
     header p {
-      margin-top: 8px;
+      opacity: 0.9;
     }
 
     .container {
-      max-width: 500px;
+      max-width: 600px;
       margin: 25px auto;
-      padding: 20px;
+      padding: 0 15px;
     }
 
     .card {
       background: white;
       padding: 20px;
+      margin-bottom: 20px;
       border-radius: 15px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-      margin-bottom: 20px;
     }
 
-    h2 {
-      margin-bottom: 15px;
+    .card h2 {
       color: #0b5cff;
+      margin-bottom: 15px;
     }
 
     label {
       display: block;
-      margin: 12px 0 6px;
+      margin-top: 12px;
+      margin-bottom: 6px;
       font-weight: bold;
     }
 
-    input, select {
+    select,
+    input {
       width: 100%;
       padding: 13px;
       border: 1px solid #ccc;
@@ -66,12 +68,42 @@
       font-size: 16px;
     }
 
+    .plans {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .plan {
+      border: 2px solid #e1e5eb;
+      padding: 15px;
+      border-radius: 12px;
+      cursor: pointer;
+      background: white;
+    }
+
+    .plan:hover {
+      border-color: #0b5cff;
+    }
+
+    .plan strong {
+      display: block;
+      color: #0b5cff;
+      margin-bottom: 5px;
+    }
+
+    .plan.selected {
+      border-color: #0b5cff;
+      background: #eef4ff;
+    }
+
     button {
       width: 100%;
-      padding: 14px;
-      margin-top: 18px;
+      margin-top: 20px;
+      padding: 15px;
       border: none;
-      border-radius: 8px;
+      border-radius: 9px;
       background: #0b5cff;
       color: white;
       font-size: 17px;
@@ -80,40 +112,35 @@
     }
 
     button:hover {
-      background: #0848c7;
+      background: #084dcc;
     }
 
     .balance {
-      background: #eaf1ff;
-      padding: 15px;
-      border-radius: 10px;
-      margin-top: 10px;
-    }
-
-    .plans {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-
-    .plan {
-      border: 1px solid #ddd;
-      padding: 15px;
-      border-radius: 10px;
+      background: #111827;
+      color: white;
       text-align: center;
+      padding: 20px;
+      border-radius: 12px;
     }
 
-    .plan strong {
+    .balance strong {
       display: block;
-      color: #0b5cff;
-      font-size: 20px;
-      margin-bottom: 5px;
+      font-size: 28px;
+      margin-top: 8px;
+      color: #43ff88;
     }
 
     footer {
       text-align: center;
-      padding: 20px;
-      color: #777;
+      padding: 25px;
+      color: #666;
+      font-size: 14px;
+    }
+
+    @media (max-width: 450px) {
+      .plans {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -121,102 +148,130 @@
 <body>
 
   <header>
-    <h1>BALIDATAPLLUK</h1>
-    <p>Fast & Affordable Data Subscription</p>
+    <h1>BALIDATAPLUK</h1>
+    <p>Fast & Easy Data Purchase</p>
   </header>
 
   <div class="container">
 
     <div class="card">
+      <div class="balance">
+        Wallet Balance
+        <strong>₦0.00</strong>
+      </div>
+    </div>
+
+    <div class="card">
       <h2>Buy Data</h2>
 
-      <label>Network</label>
+      <label for="network">Select Network</label>
+
       <select id="network">
-        <option value="">Select Network</option>
-        <option>MTN</option>
-        <option>Airtel</option>
-        <option>Glo</option>
-        <option>9mobile</option>
+        <option value="">-- Select Network --</option>
+        <option value="MTN">MTN</option>
+        <option value="Airtel">Airtel</option>
+        <option value="Glo">Glo</option>
+        <option value="9mobile">9mobile</option>
       </select>
 
-      <label>Phone Number</label>
+      <label for="phone">Phone Number</label>
+
       <input
         type="tel"
         id="phone"
         placeholder="08012345678"
+        maxlength="11"
       >
 
-      <label>Data Plan</label>
-      <select id="plan">
-        <option value="">Select Data Plan</option>
-        <option>500MB - ₦150</option>
-        <option>1GB - ₦300</option>
-        <option>2GB - ₦600</option>
-        <option>5GB - ₦1,500</option>
-        <option>10GB - ₦3,000</option>
-      </select>
+      <label>Select Data Plan</label>
+
+      <div class="plans">
+
+        <div class="plan" onclick="selectPlan(this, '1GB - ₦300')">
+          <strong>1GB</strong>
+          ₦300
+        </div>
+
+        <div class="plan" onclick="selectPlan(this, '2GB - ₦500')">
+          <strong>2GB</strong>
+          ₦500
+        </div>
+
+        <div class="plan" onclick="selectPlan(this, '3GB - ₦700')">
+          <strong>3GB</strong>
+          ₦700
+        </div>
+
+        <div class="plan" onclick="selectPlan(this, '5GB - ₦1,000')">
+          <strong>5GB</strong>
+          ₦1,000
+        </div>
+
+      </div>
 
       <button onclick="buyData()">Buy Data</button>
     </div>
 
     <div class="card">
-      <h2>Available Plans</h2>
-
-      <div class="plans">
-        <div class="plan">
-          <strong>500MB</strong>
-          ₦150
-        </div>
-
-        <div class="plan">
-          <strong>1GB</strong>
-          ₦300
-        </div>
-
-        <div class="plan">
-          <strong>2GB</strong>
-          ₦600
-        </div>
-
-        <div class="plan">
-          <strong>5GB</strong>
-          ₦1,500
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <h2>Account</h2>
-
-      <div class="balance">
-        Wallet Balance: <strong>₦0.00</strong>
-      </div>
+      <h2>How it works</h2>
+      <p>1. Select your network.</p>
+      <br>
+      <p>2. Enter the customer's phone number.</p>
+      <br>
+      <p>3. Select a data plan.</p>
+      <br>
+      <p>4. Click Buy Data.</p>
     </div>
 
   </div>
 
   <footer>
-    © 2026 BALIDATAPLLUK. All rights reserved.
+    © 2026 BALIDATAPLUK. All rights reserved.
   </footer>
 
   <script>
+
+    let selectedPlan = "";
+
+    function selectPlan(element, plan) {
+
+      document.querySelectorAll(".plan").forEach(function(item) {
+        item.classList.remove("selected");
+      });
+
+      element.classList.add("selected");
+
+      selectedPlan = plan;
+    }
+
     function buyData() {
+
       const network = document.getElementById("network").value;
       const phone = document.getElementById("phone").value;
-      const plan = document.getElementById("plan").value;
 
-      if (!network || !phone || !plan) {
-        alert("Please select network, enter phone number and choose a data plan.");
+      if (!network) {
+        alert("Please select a network.");
+        return;
+      }
+
+      if (!phone || phone.length !== 11) {
+        alert("Please enter a valid 11-digit phone number.");
+        return;
+      }
+
+      if (!selectedPlan) {
+        alert("Please select a data plan.");
         return;
       }
 
       alert(
-        "Order received!\\n\\n" +
-        "Network: " + network + "\\n" +
-        "Phone: " + phone + "\\n" +
-        "Plan: " + plan
+        "Order received!\n\n" +
+        "Network: " + network + "\n" +
+        "Phone: " + phone + "\n" +
+        "Plan: " + selectedPlan
       );
     }
+
   </script>
 
 </body>

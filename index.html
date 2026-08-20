@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BALIDATAPLLUK - Data App</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f4f7fb;
+      color: #222;
+    }
+
+    header {
+      background: #0b5cff;
+      color: white;
+      padding: 25px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 28px;
+    }
+
+    header p {
+      margin-top: 8px;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 25px auto;
+      padding: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      margin-bottom: 15px;
+      color: #0b5cff;
+    }
+
+    label {
+      display: block;
+      margin: 12px 0 6px;
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 18px;
+      border: none;
+      border-radius: 8px;
+      background: #0b5cff;
+      color: white;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0848c7;
+    }
+
+    .balance {
+      background: #eaf1ff;
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+
+    .plans {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .plan {
+      border: 1px solid #ddd;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .plan strong {
+      display: block;
+      color: #0b5cff;
+      font-size: 20px;
+      margin-bottom: 5px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #777;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>BALIDATAPLLUK</h1>
+    <p>Fast & Affordable Data Subscription</p>
+  </header>
+
+  <div class="container">
+
+    <div class="card">
+      <h2>Buy Data</h2>
+
+      <label>Network</label>
+      <select id="network">
+        <option value="">Select Network</option>
+        <option>MTN</option>
+        <option>Airtel</option>
+        <option>Glo</option>
+        <option>9mobile</option>
+      </select>
+
+      <label>Phone Number</label>
+      <input
+        type="tel"
+        id="phone"
+        placeholder="08012345678"
+      >
+
+      <label>Data Plan</label>
+      <select id="plan">
+        <option value="">Select Data Plan</option>
+        <option>500MB - ₦150</option>
+        <option>1GB - ₦300</option>
+        <option>2GB - ₦600</option>
+        <option>5GB - ₦1,500</option>
+        <option>10GB - ₦3,000</option>
+      </select>
+
+      <button onclick="buyData()">Buy Data</button>
+    </div>
+
+    <div class="card">
+      <h2>Available Plans</h2>
+
+      <div class="plans">
+        <div class="plan">
+          <strong>500MB</strong>
+          ₦150
+        </div>
+
+        <div class="plan">
+          <strong>1GB</strong>
+          ₦300
+        </div>
+
+        <div class="plan">
+          <strong>2GB</strong>
+          ₦600
+        </div>
+
+        <div class="plan">
+          <strong>5GB</strong>
+          ₦1,500
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Account</h2>
+
+      <div class="balance">
+        Wallet Balance: <strong>₦0.00</strong>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    © 2026 BALIDATAPLLUK. All rights reserved.
+  </footer>
+
+  <script>
+    function buyData() {
+      const network = document.getElementById("network").value;
+      const phone = document.getElementById("phone").value;
+      const plan = document.getElementById("plan").value;
+
+      if (!network || !phone || !plan) {
+        alert("Please select network, enter phone number and choose a data plan.");
+        return;
+      }
+
+      alert(
+        "Order received!\\n\\n" +
+        "Network: " + network + "\\n" +
+        "Phone: " + phone + "\\n" +
+        "Plan: " + plan
+      );
+    }
+  </script>
+
+</body>
+</html>
